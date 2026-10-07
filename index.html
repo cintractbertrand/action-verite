@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Action ou Vérité 💖</title>
+<meta name="description" content="Le jeu Action ou Vérité : 200 actions et 200 vérités drôles pour ados.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bubbles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <main>
+    <header>
+      <h1>Action <span class="ou">ou</span> Vérité</h1>
+      <p class="tagline">Le jeu où personne ne s'en sort indemne 😜</p>
+    </header>
+
+    <section class="players" id="players">
+      <form id="addForm" autocomplete="off">
+        <input id="nameInput" type="text" maxlength="20" placeholder="Ajoute un joueur…" aria-label="Prénom du joueur">
+        <button type="submit" class="btn small">+</button>
+      </form>
+      <ul id="playerList"></ul>
+    </section>
+
+    <section class="turn" id="turn">
+      <p id="turnText">Ajoute des joueurs, ou joue directement !</p>
+    </section>
+
+    <section class="choices">
+      <button class="btn big action" id="btnAction">🔥 Action</button>
+      <button class="btn big verite" id="btnVerite">🤫 Vérité</button>
+    </section>
+    <button class="btn surprise" id="btnRandom">🎲 Le hasard décide</button>
+
+    <section class="card hidden" id="card" aria-live="polite">
+      <p class="card-type" id="cardType"></p>
+      <p class="card-text" id="cardText"></p>
+      <div class="card-actions">
+        <button class="btn small ghost" id="btnPass">🙈 Joker</button>
+        <button class="btn small" id="btnNext">C'est fait ! 👉</button>
+      </div>
+    </section>
+
+    <footer>
+      <p id="counter"></p>
+      <button class="link" id="btnReset">Remettre toutes les cartes</button>
+    </footer>
+  </main>
+
+  <div id="confetti" aria-hidden="true"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

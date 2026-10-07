@@ -1,0 +1,211 @@
+:root {
+  --pink: #ffc8dd;
+  --pink-deep: #ff8fb8;
+  --pink-ink: #b8336a;
+  --lilac: #cdb4db;
+  --blue: #bde0fe;
+  --mint: #c8f0d8;
+  --peach: #ffe5d0;
+  --cream: #fff7fb;
+  --ink: #5a2a43;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Fredoka", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(160deg, #ffe3ee 0%, #ffd6e8 40%, #f3dcf5 75%, #dceefe 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 9vw, 3.4rem);
+  margin: 0;
+  color: var(--pink-ink);
+  text-shadow: 3px 3px 0 #fff, 6px 6px 0 var(--pink);
+  letter-spacing: .5px;
+}
+h1 .ou {
+  display: inline-block;
+  font-size: .6em;
+  color: #9b6bb5;
+  transform: rotate(-8deg);
+}
+.tagline { margin: 8px 0 22px; font-size: 1.05rem; opacity: .85; }
+
+/* Joueurs */
+.players {
+  background: rgba(255,255,255,.6);
+  border-radius: 24px;
+  padding: 14px;
+  box-shadow: 0 6px 20px rgba(184,51,106,.12);
+}
+#addForm { display: flex; gap: 8px; }
+#nameInput {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  padding: 10px 14px;
+  border: 2px solid var(--pink);
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  outline: none;
+}
+#nameInput:focus { border-color: var(--pink-deep); }
+#playerList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+#playerList:empty { margin: 0; }
+#playerList li {
+  background: var(--pink);
+  padding: 5px 6px 5px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+#playerList li.current { background: var(--pink-deep); color: #fff; transform: scale(1.08); }
+#playerList li button {
+  border: 0;
+  background: rgba(255,255,255,.6);
+  border-radius: 50%;
+  width: 22px; height: 22px;
+  cursor: pointer;
+  color: var(--ink);
+  font: inherit;
+  line-height: 1;
+}
+
+.turn { margin: 20px 0 12px; font-size: 1.25rem; font-weight: 600; min-height: 1.6em; }
+.turn strong { color: var(--pink-ink); }
+
+/* Boutons */
+.btn {
+  font: inherit;
+  font-weight: 700;
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 18px;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--pink);
+  box-shadow: 0 4px 0 var(--pink-deep);
+  transition: transform .12s, box-shadow .12s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--pink-deep); }
+.btn.small { padding: 8px 16px; font-size: 1rem; }
+.btn.ghost { background: #fff; box-shadow: 0 4px 0 var(--lilac); }
+
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.btn.big {
+  font-size: clamp(1.3rem, 6vw, 1.7rem);
+  padding: 26px 10px;
+  border-radius: 28px;
+}
+.btn.action { background: linear-gradient(135deg, #ffb3cf, #ff9ec4); box-shadow: 0 6px 0 #e9739f; }
+.btn.verite { background: linear-gradient(135deg, #e3c7f2, #cdb4db); box-shadow: 0 6px 0 #a98bc0; }
+.btn.surprise {
+  margin-top: 14px;
+  background: linear-gradient(135deg, var(--blue), var(--mint));
+  box-shadow: 0 4px 0 #9cc7e8;
+}
+
+/* Carte */
+.card {
+  margin-top: 24px;
+  background: #fff;
+  border-radius: 28px;
+  padding: 26px 20px 20px;
+  box-shadow: 0 12px 30px rgba(184,51,106,.18);
+  border: 3px dashed var(--pink);
+  animation: pop .45s cubic-bezier(.2,1.6,.4,1);
+}
+.card.verite { border-color: var(--lilac); }
+.card.hidden { display: none; }
+.card-type {
+  margin: 0 0 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: .9rem;
+  color: var(--pink-ink);
+}
+.card.verite .card-type { color: #8a5aa6; }
+.card-text { font-size: clamp(1.2rem, 5vw, 1.45rem); margin: 0 0 20px; line-height: 1.35; }
+.card-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+@keyframes pop {
+  0% { transform: scale(.6) rotate(-6deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.shake { animation: shake .5s; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-8px) rotate(-2deg); }
+  40% { transform: translateX(8px) rotate(2deg); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+footer { margin-top: 26px; font-size: .95rem; opacity: .8; }
+footer p { margin: 0 0 6px; }
+.link { background: none; border: 0; font: inherit; color: var(--pink-ink); text-decoration: underline; cursor: pointer; }
+
+/* Bulles décoratives */
+.bubbles span {
+  position: fixed;
+  bottom: -120px;
+  border-radius: 50%;
+  opacity: .45;
+  animation: float 18s linear infinite;
+  z-index: 0;
+}
+.bubbles span:nth-child(1) { left: 5%;  width: 70px;  height: 70px;  background: var(--pink); animation-duration: 16s; }
+.bubbles span:nth-child(2) { left: 25%; width: 40px;  height: 40px;  background: var(--lilac); animation-delay: 4s; }
+.bubbles span:nth-child(3) { left: 50%; width: 90px;  height: 90px;  background: var(--blue); animation-delay: 8s; animation-duration: 22s; }
+.bubbles span:nth-child(4) { left: 70%; width: 50px;  height: 50px;  background: var(--mint); animation-delay: 2s; }
+.bubbles span:nth-child(5) { left: 85%; width: 75px;  height: 75px;  background: var(--peach); animation-delay: 10s; }
+.bubbles span:nth-child(6) { left: 40%; width: 30px;  height: 30px;  background: var(--pink-deep); animation-delay: 6s; animation-duration: 14s; }
+@keyframes float {
+  to { transform: translateY(-120vh) rotate(360deg); }
+}
+
+/* Confettis */
+#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+#confetti i {
+  position: absolute;
+  top: -20px;
+  font-style: normal;
+  font-size: 22px;
+  animation: fall 1.6s ease-in forwards;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(540deg); opacity: .6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubbles span, .card, #confetti i { animation: none; }
+  .bubbles { display: none; }
+}
